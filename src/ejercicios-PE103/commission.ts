@@ -26,7 +26,8 @@ export abstract class Commission {
   protected abstract calculateCommission(): number;
 
   /**
-   * Hook que muestra el valor de la comisión tras calcularla.
+   * Hook que puede ser sobreescrito por las subclases por mostrar
+   * el valor de la comisión tras calcularla.
    * @param commission El valor de la comisión que se debe mostrar.
    */
   protected afterCalculateComision(commission: number): void {}
