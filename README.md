@@ -5,9 +5,6 @@
 ## Práctica 8 - Aplicación de procesamiento de notas de texto
 
 <p align="center">
-    <a href="https://coveralls.io/github/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741?branch=main">
-        <img alt="Coverage Status" src="https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/badge.svg?branch=main">
-    </a>
     <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/actions/workflows/coveralls.yml">
         <img alt="Coveralls" src="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/actions/workflows/coveralls.yml/badge.svg">
     </a>
