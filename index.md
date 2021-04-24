@@ -439,3 +439,10 @@ describe('Note class tests', () => {
 ```
 
 Como se puede observar en primer lugar creo el objeto **note** de la clase **Note** y verifico que este objeto se ha creado correctamente. Tras ello, compruebo el adecuado comportamiento de cada uno de los métodos de la clase.
+
+## 6. Ejemplos de uso de la aplicación
+
+A continuación, se muestran una serie de ejemplos de uso de la aplicación de procesamiento de notas de texto:
+
+![Ejemplo de uso de la aplicación](img/example_use_application.png)
+
