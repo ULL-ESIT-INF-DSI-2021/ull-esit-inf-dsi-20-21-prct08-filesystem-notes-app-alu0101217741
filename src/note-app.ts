@@ -76,11 +76,10 @@ yargs.command({
   handler(argv) {
     if (typeof argv.user === 'string' && typeof argv.title === 'string' &&
           typeof argv.body === 'string' && typeof argv.color === 'string') {
-      if (argv.color == 'red' || argv.color == 'green' ||
-            argv.color == 'blue' || argv.color == 'yellow') {
-        note.modifyNote(argv.user, argv.title, argv.body, argv.color);
-      } else {
+      if (argv.color != 'blue' && argv.color != 'red' && argv.color != 'yellow' && argv.color != 'green') {
         console.log(chalk.bold.red('Note color must be red, green, blue, or yellow'));
+      } else {
+        note.modifyNote(argv.user, argv.title, argv.body, argv.color);
       }
     }
   },
