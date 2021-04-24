@@ -23,6 +23,7 @@ Leer la documentación sobre [yargs](https://www.npmjs.com/package/yargs), [chal
 ## 4. Explicación de la solución diseñada
 
 En este apartado se explica el diseño que se ha llevado a cabo para realizar la aplicación de procesamiento de notas de texto. Antes de comenzar hay que crear la [estructura básica del proyecto vista en clase](https://ull-esit-inf-dsi-2021.github.io/typescript-theory/typescript-project-setup.html). Además, se sigue la metodología **TDD** por lo que en la estructura del proyecto es necesario añadir el directorio `tests` en el cual se incluyen las pruebas unitarias, que hacen posible confirmar el correcto funcionamiento del software y verificar que es robusto ante entradas no válidas. Para documentar el proyecto se utiliza la herramienta **TypeDoc**. Por último, se incluyen flujos de trabajo de GitHub Actions para realizar las pruebas en distintos entornos con diferentes versiones de Node.js, enviar los datos de cubrimiento a Coveralls, así como producir un análisis de la calidad y seguridad del código fuente a través de Sonar Cloud.
+
 El proyecto está formado por dos ficheros, `note.ts` que incluye la clase **Note** y `note-app.ts` que emplea el paquete **yargs** para que sea posible interactuar con la aplicación desde la línea de comandos. A continuación, se explica cada uno de estos ficheros.
 
 **Código de la clase Note:**
@@ -362,3 +363,79 @@ En el fichero `note-app.ts` mediante el paquete **yargs** se gestionan diferente
 En primer lugar, se crea el objeto **note** de la clase **Note**, este se utilizará para invocar los métodos correspondientes según los comandos que el usuario haya ejecutado.Tras ello, se configura el comando `add` con las opciones: `--user`, `--title`, `--body` y `--color`, todas incluyen una descripción, son obligatorias `demandOption: true` y de tipo string `type: 'string'`. El manejador `handler` recibe como parámetro el objeto `argv` que contiene los pares opción-valor del comando, por ejemplo hay que utilizar `argv.title` para acceder al título de la nota. En este manejador se comprueba que todas las opciones sean de tipo string, si esto es así se verifica que el color introducido corresponda a los aceptados por el sistema. Si el color es correcto se invoca al método `addNote`, en otro caso se muestra el mensaje `Note color must be red, green, blue, or yellow`. El comando `modify` es similar al anterior con la diferencia de que en este caso si todo es correcto se invoca al método `modifyNote`. Para eliminar una nota hay que emplear `remove` que tiene como opciones `--user` y `--title`. Si el usuario quiere listar los títulos de todas sus notas debe ejecutar el comando `list` con la opción `--user`. El último comando disponible es `read` con el que se puede leer una nota concreta para lo que hay que indicar las opciones `--user` y `--title`.
 
 Por último, se incluye la sentencia `yargs.parse()` para poder procesar los argumentos pasados desde la línea de comandos a la aplicación.
+
+## 5. Pruebas unitarias realizadas
+
+Las pruebas unitarias desarrolladas para comprobar el correcto funcionamiento del código son las siguientes:
+
+```ts
+import 'mocha';
+import {expect} from 'chai';
+import * as fs from 'fs';
+import {Note} from '../src/note';
+
+
+describe('Note class tests', () => {
+  const note = Note.getNotes();
+
+  it('A Note class object can be successfully created', () => {
+    expect(note).not.to.be.equal(null);
+  });
+
+  it('Note.getNote() returns the objects note', () => {
+    expect(Note.getNotes()).to.be.equal(note);
+  });
+
+  it('note.addNode("test", "Test note", "This is a test note", "green") returns "New note added!"', () => {
+    expect(note.addNote('test', 'Test note', 'This is a test note', 'green')).to.be.equal('New note added!');
+    expect(note.addNote('test', 'Test note 2', 'This is second a test note', 'blue')).to.be.equal('New note added!');
+  });
+
+  it('The note was created successfully', () => {
+    expect(fs.existsSync(`notes/test/Test note.json`)).to.be.equal(true);
+  });
+
+  it('note.addNode("test", "Test note", "This is a test note", "green") returns "Note title taken!"', () => {
+    expect(note.addNote('test', 'Test note', 'This is a test note', 'green')).to.be.equal('Note title taken!');
+  });
+
+  it('note.modifyNote("test", "Test note", "Testing the modify method", "blue") returns "Note modified!"', () => {
+    expect(note.modifyNote('test', 'Test note', 'Testing the modify method', 'blue')).to.be.equal('Note modified!');
+  });
+
+  it('The file has been modified successfully', () => {
+    expect(fs.readFileSync(`notes/test/Test note.json`, {encoding: 'utf-8'})).to.be.equal('{"title": "Test note", "message": "Testing the modify method", "color": "blue"}');
+  });
+
+  it('note.modifyNote("test", "Non-existent file", "Testing the modify method", "blue") returns "The note you want to modify does not exist!"', () => {
+    expect(note.modifyNote('test', 'Non-existent file', 'Testing the modify method', 'blue')).to.be.equal('The note you want to modify does not exist!');
+  });
+
+  it('note.showNotes("test") returns "Test note 2 Test note "', () => {
+    expect(note.showNotes('test')).to.be.equal('Test note 2 Test note ');
+  });
+
+  it('note.showNotes("Non-existent user") returns "You have never saved a note"', () => {
+    expect(note.showNotes('Non-existent user')).to.be.equal('You have never saved a note');
+  });
+
+  it('note.readNote("test", "Test note") returns "Test note Testing the modify method"', () => {
+    expect(note.readNote('test', 'Test note')).to.be.equal('Test note\nTesting the modify method');
+  });
+
+  it('note.readNote("test", "Non-existent file") returns "Note not found"', () => {
+    expect(note.readNote('test', 'Non-existent file')).to.be.equal('Note not found');
+  });
+
+  it('note.removeNote("test", "Test note") returns "Note removed!"', () => {
+    expect(note.removeNote('test', 'Test note')).to.be.equal('Note removed!');
+  });
+
+  it('The note has been deleted successfully', () => {
+    expect(note.removeNote('test', 'Test note')).to.be.equal('Note not found');
+    fs.rmdirSync('./notes', {recursive: true});
+  });
+});
+```
+
+Como se puede observar en primer lugar creo el objeto **note** de la clase **Note** y verifico que este objeto se ha creado correctamente. Tras ello, compruebo el adecuado comportamiento de cada uno de los métodos de la clase.
