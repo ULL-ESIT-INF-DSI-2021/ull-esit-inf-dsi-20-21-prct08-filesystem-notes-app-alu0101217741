@@ -51,22 +51,26 @@ yargs.command({
 yargs.command({
   command: 'modify',
   describe: 'Modify a note',
+
   builder: {
     user: {
       describe: 'User who is going to modify a note',
       demandOption: true,
       type: 'string',
     },
+
     title: {
       describe: 'The title of the note',
       demandOption: true,
       type: 'string',
     },
+
     body: {
       describe: 'The text of the note',
       demandOption: true,
       type: 'string',
     },
+
     color: {
       describe: 'The color of the note',
       demandOption: true,
@@ -74,10 +78,12 @@ yargs.command({
     },
   },
   handler(argv) {
-    if (typeof argv.user === 'string' && typeof argv.title === 'string' &&
-          typeof argv.body === 'string' && typeof argv.color === 'string') {
+    if (typeof argv.body === 'string' && typeof argv.color === 'string' &&
+          typeof argv.user === 'string' && typeof argv.title === 'string') {
+
       if (argv.color != 'blue' && argv.color != 'red' && argv.color != 'yellow' && argv.color != 'green') {
         console.log(chalk.bold.red('Note color must be red, green, blue, or yellow'));
+
       } else {
         note.modifyNote(argv.user, argv.title, argv.body, argv.color);
       }
