@@ -169,16 +169,196 @@ export class Note {
 
 En esta clase se emplea la API síncrona de Node.js para que sea posible añadir, modificar, eliminar, listar y leer las notas de un usuario concreto. Con esta clase también se consigue guardar cada nota de la lista en un fichero con formato JSON y que estos ficheros se almacenen en un directorio con el nombre del usuario correspondiente. Cabe destacar que una nota esta formada por un título, un mensaje y un color (rojo, verde, azul o amarillo).
 
-En esta clase he aplicado el patrón de diseño Singleton por lo que el constructor es privado y se dispone del atributo privado estático **note**. Además, se ha declarado un método público estático `getNotes()`, durante la primera invocación a este método se crea la única instancia de la clase, en sucesivas invocaciones al método, se devuelve la instancia de la clase creada durante la primera invocación. En este método también se comprueba si no existe el directorio `notes` y en caso de que esto sea así se crea mediante `fs.mkdirSync(`notes`, {recursive: true});`.
+En esta clase he aplicado el patrón de diseño Singleton por lo que el constructor es privado y se dispone del atributo privado estático **note**. Además, se ha declarado un método público estático `getNotes()`, durante la primera invocación a este método se crea la única instancia de la clase, en sucesivas invocaciones al método, se devuelve la instancia de la clase creada durante la primera invocación. En este método también se comprueba si no existe el directorio `notes` y en caso de que esto sea así se crea mediante `fs.mkdirSync('notes', {recursive: true});`.
 
-El método `addNote` permite añadir una nota a la lista. Antes de hacer esto se comprueba mediante  `fs.existsSync(`notes/${userName}/${title}.json`)` si ese usuario ya tiene una nota con el mismo título, en caso de que así sea entonces se muestra por consola `Note title taken!`, este texto aparecerá en rojo y en negrita `chalk.bold.red` ya que estamos empleando el paquete **chalk**. Si no existe una nota con el mismo título se adaptan los parámetros que ha recibido el método para generar un texto en formato JSON, tras ello con `fs.mkdirSync(`notes/${userName}`, {recursive: true})` se crea el directorio donde se van a almacenar las notas del usuario, después mediante `fs.appendFileSync(`notes/${userName}/${title}.json`, jsonText)`  se añaden de forma síncrona datos al fichero que representa la nota, en caso de que el fichero no exista este se crea. Finalmente, se muestra en verde y en negrita el mensaje `New note added!` para indicar que la nota se ha añadido correctamente.
+El método `addNote` permite añadir una nota a la lista. Antes de hacer esto se comprueba mediante  `fs.existsSync('notes/${userName}/${title}.json')` si ese usuario ya tiene una nota con el mismo título, en caso de que así sea entonces se muestra por consola `Note title taken!`, este texto aparecerá en rojo y en negrita `chalk.bold.red` ya que estamos empleando el paquete **chalk**. Si no existe una nota con el mismo título se adaptan los parámetros que ha recibido el método para generar un texto en formato JSON, tras ello con `fs.mkdirSync('notes/${userName}', {recursive: true})` se crea el directorio donde se van a almacenar las notas del usuario, después mediante `fs.appendFileSync('notes/${userName}/${title}.json', jsonText)`  se añaden de forma síncrona datos al fichero que representa la nota, en caso de que el fichero no exista este se crea. Finalmente, se muestra en verde y en negrita el mensaje `New note added!` para indicar que la nota se ha añadido correctamente.
 
-El método `modifyNote` modifica una nota de la lista, primero se comprueba si el usuario tiene alguna nota con el título que se ha pasado como parámetro, en caso de que esto no sea así se muestra por consola `The note you want to modify does not exist!`. Sin embargo, si la nota existe entonces se emplea la constante **jsonText** para hacer que los parámetros que recibe el método estén en formato  JSON y luego se escribe en el fichero donde se encuentra la nota utilizando `fs.writeFileSync(`notes/${userName}/${title}.json`, jsonText)`, esto hace que se elimine el contenido anterior y se guarde el que hemos establecido en este momento. Por último, se muestra el mensaje `Note modified!` para informar que la modificación se ha realizado adecuadamente.
+El método `modifyNote` modifica una nota de la lista, primero se comprueba si el usuario tiene alguna nota con el título que se ha pasado como parámetro, en caso de que esto no sea así se muestra por consola `The note you want to modify does not exist!`. Sin embargo, si la nota existe entonces se emplea la constante **jsonText** para hacer que los parámetros que recibe el método estén en formato  JSON y luego se escribe en el fichero donde se encuentra la nota utilizando `fs.writeFileSync('notes/${userName}/${title}.json', jsonText)`, esto hace que se elimine el contenido anterior y se guarde el que hemos establecido en este momento. Por último, se muestra el mensaje `Note modified!` para informar que la modificación se ha realizado adecuadamente.
 
-Para eliminar una nota de la lista se debe emplear `removeNote`. En este método como en los anteriores también se verifica que para el usuario existe una nota con el título indicado, imprimiendo por consola `Note not found` si la nota no existe. En caso contrario se elimina dicha nota empleando `fs.rmSync(`notes/${userName}/${title}.json`)` y se muestra el mensaje `Note removed!`.
+Para eliminar una nota de la lista se debe emplear `removeNote`. En este método como en los anteriores también se verifica que para el usuario existe una nota con el título indicado, imprimiendo por consola `Note not found` si la nota no existe. En caso contrario se elimina dicha nota empleando `fs.rmSync('notes/${userName}/${title}.json')` y se muestra el mensaje `Note removed!`.
 
-Con `showNotes` se listan los títulos de todas las notas de un usuario, si no se encuentra un directorio con el nombre del usuario esto significa que nunca ha guardado una nota en el sistema por lo que se imprime `You have never saved a note`. Sin embargo, si existe este directorio se obtienen todos los ficheros que se encuentran en él, para ello se emplea `fs.readdirSync(`notes/${userName}`)` que lee el contenido de un directorio. Tras esto, se recorre la constante **filesInDirectory** que se trata de una array de string con el nombre de los diferentes ficheros, para cada uno de ellos se lee su contenido con `fs.readFileSync(`notes/${userName}/${file}`, {encoding: 'utf-8'})` y este contenido se convierte a JSON mediante `JSON.parse(contentFile)` para que se pueda acceder fácilmente al título y color. Finalmente con `console.log(chalk.bold.keyword(jsonContent.color)(jsonContent.title))` se muestra el título de la nota con su color correspondiente.  
+Con `showNotes` se listan los títulos de todas las notas de un usuario, si no se encuentra un directorio con el nombre del usuario esto significa que nunca ha guardado una nota en el sistema por lo que se imprime `You have never saved a note`. Sin embargo, si existe este directorio se obtienen todos los ficheros que se encuentran en él, para ello se emplea `fs.readdirSync('notes/${userName}')` que lee el contenido de un directorio. Tras esto, se recorre la constante **filesInDirectory** que se trata de una array de string con el nombre de los diferentes ficheros, para cada uno de ellos se lee su contenido con `fs.readFileSync('notes/${userName}/${file}', {encoding: 'utf-8'})` y este contenido se convierte a JSON mediante `JSON.parse(contentFile)` para que se pueda acceder fácilmente al título y color. Finalmente con `console.log(chalk.bold.keyword(jsonContent.color)(jsonContent.title))` se muestra el título de la nota con su color correspondiente.  
 
-Por último, el método `readNote` permite leer el contenido de una nota concreta, como se ha hecho en el resto de métodos, primero se comprueba que existe la nota que se quiere leer, en caso de que no sea así se imprime el mensaje `Note not found`. En otro caso, se obtiene el contenido de la nota con `fs.readFileSync(`notes/${userName}/${title}.json`, {encoding: 'utf-8'})`, este contenido se convierte a JSON empleando `JSON.parse(contentFile)` y se muestran con el color adecuado el título y el mensaje de la nota.
+Por último, el método `readNote` permite leer el contenido de una nota concreta, como se ha hecho en el resto de métodos, primero se comprueba que existe la nota que se quiere leer, en caso de que no sea así se imprime el mensaje `Note not found`. En otro caso, se obtiene el contenido de la nota con `fs.readFileSync('notes/${userName}/${title}.json', {encoding: 'utf-8'})`, este contenido se convierte a JSON empleando `JSON.parse(contentFile)` y se muestran con el color adecuado el título y el mensaje de la nota.
 
 Como se ha podido observar todos los mensajes informativos aparecen en color verde, mientras que los mensajes de error se muestran en color rojo.
+
+**Código del fichero note-app.ts:**
+
+```ts
+import * as yargs from 'yargs';
+import * as chalk from 'chalk';
+import {Note} from './note';
+
+const note = Note.getNotes();
+
+/**
+ * Command to add a note to the list.
+ */
+yargs.command({
+  command: 'add',
+  describe: 'Add a new note',
+  builder: {
+    user: {
+      describe: 'User who is going to add the note',
+      demandOption: true,
+      type: 'string',
+    },
+    title: {
+      describe: 'The title of the note',
+      demandOption: true,
+      type: 'string',
+    },
+    body: {
+      describe: 'The text of the note',
+      demandOption: true,
+      type: 'string',
+    },
+    color: {
+      describe: 'The color of the note',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    if (typeof argv.user === 'string' && typeof argv.title === 'string' &&
+        typeof argv.body === 'string' && typeof argv.color === 'string') {
+      if (argv.color == 'red' || argv.color == 'green' ||
+          argv.color == 'blue' || argv.color == 'yellow') {
+        note.addNote(argv.user, argv.title, argv.body, argv.color);
+      } else {
+        console.log(chalk.bold.red('Note color must be red, green, blue, or yellow'));
+      }
+    }
+  },
+});
+
+/**
+ * Command to modify a note in the list.
+ */
+yargs.command({
+  command: 'modify',
+  describe: 'Modify a note',
+
+  builder: {
+    user: {
+      describe: 'User who is going to modify a note',
+      demandOption: true,
+      type: 'string',
+    },
+
+    title: {
+      describe: 'The title of the note',
+      demandOption: true,
+      type: 'string',
+    },
+
+    body: {
+      describe: 'The text of the note',
+      demandOption: true,
+      type: 'string',
+    },
+
+    color: {
+      describe: 'The color of the note',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    if (typeof argv.body === 'string' && typeof argv.color === 'string' &&
+          typeof argv.user === 'string' && typeof argv.title === 'string') {
+
+      if (argv.color != 'blue' && argv.color != 'red' && argv.color != 'yellow' && argv.color != 'green') {
+        console.log(chalk.bold.red('Note color must be red, green, blue, or yellow'));
+
+      } else {
+        note.modifyNote(argv.user, argv.title, argv.body, argv.color);
+      }
+    }
+  },
+});
+
+/**
+ * Command to remove a note from the list.
+ */
+yargs.command({
+  command: 'remove',
+  describe: 'Delete a note',
+  builder: {
+    user: {
+      describe: 'User who is going to delete the note',
+      demandOption: true,
+      type: 'string',
+    },
+    title: {
+      describe: 'The title of the note',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    if (typeof argv.user === 'string' && typeof argv.title === 'string') {
+      note.removeNote(argv.user, argv.title);
+    }
+  },
+});
+
+/**
+ * Command to list the titles of a user's notes.
+ */
+yargs.command({
+  command: 'list',
+  describe: 'List the titles of the notes',
+  builder: {
+    user: {
+      describe: 'User who will show his notes',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    if (typeof argv.user === 'string') {
+      note.showNotes(argv.user);
+    }
+  },
+});
+
+/**
+ * Command to read a specific note from the list.
+ */
+yargs.command({
+  command: 'read',
+  describe: 'Read a specific note from the list',
+  builder: {
+    user: {
+      describe: 'User who will read a note',
+      demandOption: true,
+      type: 'string',
+    },
+    title: {
+      describe: 'The title of the note',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    if (typeof argv.user === 'string' && typeof argv.title === 'string') {
+      note.readNote(argv.user, argv.title);
+    }
+  },
+});
+
+/**
+ * Process the arguments passed from the command line to the application.
+ */
+yargs.parse();
+```
+
+**Explicación del código:**
+
+En el fichero `note-app.ts` mediante el paquete **yargs** se gestionan diferentes comandos, cada uno de ellos, con sus opciones y manejador correspondiente, con esto se consigue que un usuario solo pueda interactuar con la aplicación de procesamiento de notas de texto a través de la línea de comandos.
+
+En primer lugar, se crea el objeto **note** de la clase **Note**, este se utilizará para invocar los métodos correspondientes según los comandos que el usuario haya ejecutado.Tras ello, se configura el comando `add` con las opciones: `--user`, `--title`, `--body` y `--color`, todas incluyen una descripción, son obligatorias `demandOption: true` y de tipo string `type: 'string'`. El manejador `handler` recibe como parámetro el objeto `argv` que contiene los pares opción-valor del comando, por ejemplo hay que utilizar `argv.title` para acceder al título de la nota. En este manejador se comprueba que todas las opciones sean de tipo string, si esto es así se verifica que el color introducido corresponda a los aceptados por el sistema. Si el color es correcto se invoca al método `addNote`, en otro caso se muestra el mensaje `Note color must be red, green, blue, or yellow`. El comando `modify` es similar al anterior con la diferencia de que en este caso si todo es correcto se invoca al método `modifyNote`. Para eliminar una nota hay que emplear `remove` que tiene como opciones `--user` y `--title`. Si el usuario quiere listar los títulos de todas sus notas debe ejecutar el comando `list` con la opción `--user`. El último comando disponible es `read` con el que se puede leer una nota concreta para lo que hay que indicar las opciones `--user` y `--title`.
+
+Por último, se incluye la sentencia `yargs.parse()` para poder procesar los argumentos pasados desde la línea de comandos a la aplicación.
