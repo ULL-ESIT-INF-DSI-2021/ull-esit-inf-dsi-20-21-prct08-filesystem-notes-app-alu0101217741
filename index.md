@@ -447,3 +447,14 @@ A continuación, se muestran una serie de ejemplos de uso de la aplicación de p
 ![Ejemplo de uso de la aplicación](img/example_use_application.png)
 
 Para ver ampliada la imagen haz clic [aquí](img/example_use_application.png).
+
+## 7. Conclusiones
+
+En conclusión, esta práctica me ha permitido familiarizarme con la **API síncrona** proporcionada por **Node.js** para trabajar con el sistema de ficheros. De esta forma he aprendido a crear ficheros en un determinado formato y almacenar en ellos la información que deseaba. Además, gracias a esta API he podido cargar estos ficheros y leer la información que tenían almacenada.
+
+El paquete **chalk** me ha parecido muy útil ya que permite mostrar texto en consola con el estilo que se establezca, lo que ha servido en esta práctica para mostrar en verde los mensajes informativos y en rojo los de error. Por su parte, el paquete **yargs**  que ayuda a crear herramientas de línea de comandos interactivas, considero que es interesante porque proporciona una manera sencilla de interactuar con las aplicaciones.
+
+A diferencia de prácticas anteriores en esta se ha utilizado la herramienta **Sonar Cloud** con la que es posible realizar un análisis de la calidad y seguridad del código fuente, considero que esto tiene gran relevancia porque permite detectar errores y vulnerabilidades en el desarrollo.
+
+Por último, pienso que una vez sabemos la manera en la que trabajar con el lenguaje **TypeScript**, aprender este tipo de herramientas es muy importante para conseguir avanzar como desarrolladores.
+
