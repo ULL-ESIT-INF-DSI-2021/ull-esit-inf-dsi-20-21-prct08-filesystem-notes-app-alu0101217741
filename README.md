@@ -20,4 +20,6 @@ En esta práctica se implementa una aplicación de procesamiento de notas de tex
 
 Además, se llevará a cabo un informe donde se muestran y explican las soluciones a los ejercicios.
 
+Para ver el informe de la práctica haz clic [aquí]( https://ull-esit-inf-dsi-2021.github.io/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/).
+
 Los ejercicios realizados durante el PE-103 se encuentran en los directorios src/ejercicios-PE103 y tests/ejercicios-PE103.
