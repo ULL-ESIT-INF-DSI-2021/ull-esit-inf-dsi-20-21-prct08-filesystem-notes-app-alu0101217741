@@ -25,6 +25,9 @@ export class Note {
    * @returns The only instance of the class.
    */
   public static getNotes(): Note {
+    if (!fs.existsSync(`notes`)) {
+      fs.mkdirSync(`notes`, {recursive: true});
+    }
     if (!Note.note) {
       Note.note = new Note();
     }
@@ -45,8 +48,12 @@ export class Note {
       return 'Note title taken!';
     }
     const jsonText = `{"title": "${title}", "message": "${message}", "color": "${color}"}`;
-    fs.mkdirSync(`notes/${userName}`, {recursive: true});
-    fs.appendFileSync(`notes/${userName}/${title}.json`, jsonText);
+    if (fs.existsSync(`notes/${userName}`)) {
+      fs.appendFileSync(`notes/${userName}/${title}.json`, jsonText);
+    } else {
+      fs.mkdirSync(`notes/${userName}`, {recursive: true});
+      fs.appendFileSync(`notes/${userName}/${title}.json`, jsonText);
+    }
     console.log(chalk.bold.green('New note added!'));
     return 'New note added!';
   }

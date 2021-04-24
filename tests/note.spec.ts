@@ -17,6 +17,7 @@ describe('Note class tests', () => {
 
   it('note.addNode("test", "Test note", "This is a test note", "green") returns "New note added!"', () => {
     expect(note.addNote('test', 'Test note', 'This is a test note', 'green')).to.be.equal('New note added!');
+    expect(note.addNote('test', 'Test note 2', 'This is second a test note', 'blue')).to.be.equal('New note added!');
   });
 
   it('The note was created successfully', () => {
@@ -39,8 +40,8 @@ describe('Note class tests', () => {
     expect(note.modifyNote('test', 'Non-existent file', 'Testing the modify method', 'blue')).to.be.equal('The note you want to modify does not exist!');
   });
 
-  it('note.showNotes("test") returns "Test note "', () => {
-    expect(note.showNotes('test')).to.be.equal('Test note ');
+  it('note.showNotes("test") returns "Test note 2 Test note "', () => {
+    expect(note.showNotes('test')).to.be.equal('Test note 2 Test note ');
   });
 
   it('note.showNotes("Non-existent user") returns "You have never saved a note"', () => {
@@ -61,5 +62,6 @@ describe('Note class tests', () => {
 
   it('The note has been deleted successfully', () => {
     expect(note.removeNote('test', 'Test note')).to.be.equal('Note not found');
+    fs.rmdirSync('./notes', {recursive: true});
   });
 });
