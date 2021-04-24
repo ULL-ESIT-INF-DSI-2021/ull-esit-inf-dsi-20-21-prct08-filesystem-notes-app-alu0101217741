@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Visa | ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741</title>
+	<title>Commission | ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741</title>
 	<meta name="description" content="Documentation for ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,13 +55,13 @@
 					<a href="../modules.html">ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741</a>
 				</li>
 				<li>
-					<a href="../modules/visa.html">visa</a>
+					<a href="../modules/ejercicios_pe103_commission.html">ejercicios-PE103/commission</a>
 				</li>
 				<li>
-					<a href="visa.visa-1.html">Visa</a>
+					<a href="ejercicios_pe103_commission.commission.html">Commission</a>
 				</li>
 			</ul>
-			<h1>Class Visa</h1>
+			<h1>Class Commission</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Clase que representa el método de pago Visa.</p>
+						<p>Clase abstracta que incluye un método de plantilla para calcular las
+						comisiones con diferentes métodos de pago.</p>
 					</div>
 				</div>
 			</section>
@@ -79,10 +80,16 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="commission.commission-1.html" class="tsd-signature-type" data-tsd-kind="Class">Commission</a>
+						<span class="target">Commission</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">Visa</span>
+								<a href="ejercicios_pe103_mastercard.mastercard.html" class="tsd-signature-type" data-tsd-kind="Class">Mastercard</a>
+							</li>
+							<li>
+								<a href="ejercicios_pe103_paypal.paypal.html" class="tsd-signature-type" data-tsd-kind="Class">Paypal</a>
+							</li>
+							<li>
+								<a href="ejercicios_pe103_visa.visa.html" class="tsd-signature-type" data-tsd-kind="Class">Visa</a>
 							</li>
 						</ul>
 					</li>
@@ -95,21 +102,21 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="visa.visa-1.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="ejercicios_pe103_commission.commission.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
+						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="visa.visa-1.html#price" class="tsd-kind-icon">price</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="ejercicios_pe103_commission.commission.html#price" class="tsd-kind-icon">price</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="visa.visa-1.html#aftercalculatecomision" class="tsd-kind-icon">after<wbr>Calculate<wbr>Comision</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="visa.visa-1.html#calculatecommission" class="tsd-kind-icon">calculate<wbr>Commission</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="visa.visa-1.html#commission" class="tsd-kind-icon">commission</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="ejercicios_pe103_commission.commission.html#aftercalculatecomision" class="tsd-kind-icon">after<wbr>Calculate<wbr>Comision</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="ejercicios_pe103_commission.commission.html#calculatecommission" class="tsd-kind-icon">calculate<wbr>Commission</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="ejercicios_pe103_commission.commission.html#commission" class="tsd-kind-icon">commission</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,61 +124,67 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Visa<span class="tsd-signature-symbol">(</span>price<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="visa.visa-1.html" class="tsd-signature-type" data-tsd-kind="Class">Visa</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Commission<span class="tsd-signature-symbol">(</span>price<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ejercicios_pe103_commission.commission.html" class="tsd-signature-type" data-tsd-kind="Class">Commission</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="commission.commission-1.html">Commission</a>.<a href="commission.commission-1.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/blob/6f5ee3a/src/ejercicios-PE103/visa.ts#L6">visa.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/blob/2cd6d7c/src/ejercicios-PE103/commission.ts#L5">ejercicios-PE103/commission.ts:5</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Constructor de la clase.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>price: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>El precio del producto que se haya comprado.</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="visa.visa-1.html" class="tsd-signature-type" data-tsd-kind="Class">Visa</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="ejercicios_pe103_commission.commission.html" class="tsd-signature-type" data-tsd-kind="Class">Commission</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="price" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> price</h3>
 					<div class="tsd-signature tsd-kind-icon">price<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="commission.commission-1.html">Commission</a>.<a href="commission.commission-1.html#price">price</a></p>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="aftercalculatecomision" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> after<wbr>Calculate<wbr>Comision</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 						<li class="tsd-signature tsd-kind-icon">after<wbr>Calculate<wbr>Comision<span class="tsd-signature-symbol">(</span>commission<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="commission.commission-1.html">Commission</a>.<a href="commission.commission-1.html#aftercalculatecomision">afterCalculateComision</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/blob/6f5ee3a/src/ejercicios-PE103/visa.ts#L23">visa.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/blob/2cd6d7c/src/ejercicios-PE103/commission.ts#L33">ejercicios-PE103/commission.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Hook que muestra en pantalla el valor de la comisión.</p>
+									<p>Hook que puede ser sobreescrito por las subclases por mostrar
+									el valor de la comisión tras calcularla.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -179,7 +192,7 @@
 								<li>
 									<h5>commission: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>El valor de la comisión.</p>
+										<p>El valor de la comisión que se debe mostrar.</p>
 									</div>
 								</li>
 							</ul>
@@ -187,42 +200,40 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="calculatecommission" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> calculate<wbr>Commission</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> calculate<wbr>Commission</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 						<li class="tsd-signature tsd-kind-icon">calculate<wbr>Commission<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="commission.commission-1.html">Commission</a>.<a href="commission.commission-1.html#calculatecommission">calculateCommission</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/blob/6f5ee3a/src/ejercicios-PE103/visa.ts#L15">visa.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/blob/2cd6d7c/src/ejercicios-PE103/commission.ts#L26">ejercicios-PE103/commission.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Método que calcula la comisión aplicando el porcentaje de Visa.</p>
+									<p>Método abstracto que deben implementar las subclases para aplicar un
+									porcentaje de comisión determinado.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>El valor de la comisión.</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="commission" class="tsd-anchor"></a>
 					<h3>commission</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">commission<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="commission.commission-1.html">Commission</a>.<a href="commission.commission-1.html#commission">commission</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/blob/6f5ee3a/src/ejercicios-PE103/commission.ts#L16">commission.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101217741/blob/2cd6d7c/src/ejercicios-PE103/commission.ts#L16">ejercicios-PE103/commission.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -241,19 +252,22 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/commission.html">commission</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/mastercard.html">mastercard</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/paypal.html">paypal</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/visa.html">visa</a>
+						<a href="../modules/ejercicios_pe103_commission.html">ejercicios-<wbr>PE103/commission</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/ejercicios_pe103_mastercard.html">ejercicios-<wbr>PE103/mastercard</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/ejercicios_pe103_paypal.html">ejercicios-<wbr>PE103/paypal</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/ejercicios_pe103_visa.html">ejercicios-<wbr>PE103/visa</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/note.html">note</a>
 					</li>
 				</ul>
 			</nav>
@@ -262,22 +276,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="visa.visa-1.html" class="tsd-kind-icon">Visa</a>
+						<a href="ejercicios_pe103_commission.commission.html" class="tsd-kind-icon">Commission</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-								<a href="visa.visa-1.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="ejercicios_pe103_commission.commission.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="visa.visa-1.html#price" class="tsd-kind-icon">price</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="ejercicios_pe103_commission.commission.html#price" class="tsd-kind-icon">price</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
-								<a href="visa.visa-1.html#aftercalculatecomision" class="tsd-kind-icon">after<wbr>Calculate<wbr>Comision</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="ejercicios_pe103_commission.commission.html#aftercalculatecomision" class="tsd-kind-icon">after<wbr>Calculate<wbr>Comision</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
-								<a href="visa.visa-1.html#calculatecommission" class="tsd-kind-icon">calculate<wbr>Commission</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="ejercicios_pe103_commission.commission.html#calculatecommission" class="tsd-kind-icon">calculate<wbr>Commission</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="visa.visa-1.html#commission" class="tsd-kind-icon">commission</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="ejercicios_pe103_commission.commission.html#commission" class="tsd-kind-icon">commission</a>
 							</li>
 						</ul>
 					</li>
@@ -295,12 +309,14 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-			</ul>
-			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 			</ul>
 		</div>
 	</div>
