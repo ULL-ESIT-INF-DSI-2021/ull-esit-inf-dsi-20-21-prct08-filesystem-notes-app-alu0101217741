@@ -446,3 +446,4 @@ A continuación, se muestran una serie de ejemplos de uso de la aplicación de p
 
 ![Ejemplo de uso de la aplicación](img/example_use_application.png)
 
+Para ver ampliada la imagen haz clic [aquí](img/example_use_application.png).
