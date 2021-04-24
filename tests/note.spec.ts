@@ -1,7 +1,7 @@
 import 'mocha';
 import {expect} from 'chai';
 import * as fs from 'fs';
-import {Note} from '../src/notes';
+import {Note} from '../src/note';
 
 
 describe('Note class tests', () => {
