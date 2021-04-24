@@ -2,7 +2,7 @@ import * as yargs from 'yargs';
 import * as chalk from 'chalk';
 import {Note} from './note';
 
-const note = new Note();
+const note = Note.getNotes();
 
 /**
  * Command to add a note to the list.

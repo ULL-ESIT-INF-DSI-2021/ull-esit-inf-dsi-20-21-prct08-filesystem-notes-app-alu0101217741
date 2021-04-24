@@ -5,10 +5,14 @@ import {Note} from '../src/note';
 
 
 describe('Note class tests', () => {
-  const note = new Note();
+  const note = Note.getNotes();
 
   it('A Note class object can be successfully created', () => {
     expect(note).not.to.be.equal(null);
+  });
+
+  it('Note.getNote() returns the objects note', () => {
+    expect(Note.getNotes()).to.be.equal(note);
   });
 
   it('note.addNode("test", "Test note", "This is a test note", "green") returns "New note added!"', () => {

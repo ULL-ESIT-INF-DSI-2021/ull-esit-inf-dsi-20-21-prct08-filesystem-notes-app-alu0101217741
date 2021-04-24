@@ -11,9 +11,25 @@ export type TypeColor = 'red' | 'green' |'blue' | 'yellow';
  */
 export class Note {
   /**
+   * Private attribute that represents the only instance of the class.
+   */
+  private static note: Note;
+
+  /**
    * Class constructor.
    */
-  constructor() {}
+  private constructor() {}
+
+  /**
+   * Method that in the first call creates the only instance of the class.
+   * @returns The only instance of the class.
+   */
+  public static getNotes(): Note {
+    if (!Note.note) {
+      Note.note = new Note();
+    }
+    return Note.note;
+  };
 
   /**
    * Method that allows adding a note to the list.
