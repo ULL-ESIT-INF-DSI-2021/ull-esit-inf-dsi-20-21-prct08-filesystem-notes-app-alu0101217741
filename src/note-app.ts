@@ -4,6 +4,9 @@ import {Note} from './note';
 
 const note = new Note();
 
+/**
+ * Command to add a note to the list.
+ */
 yargs.command({
   command: 'add',
   describe: 'Add a new note',
@@ -42,6 +45,9 @@ yargs.command({
   },
 });
 
+/**
+ * Command to modify a note in the list.
+ */
 yargs.command({
   command: 'modify',
   describe: 'Modify a note',
@@ -80,6 +86,9 @@ yargs.command({
   },
 });
 
+/**
+ * Command to remove a note from the list.
+ */
 yargs.command({
   command: 'remove',
   describe: 'Delete a note',
@@ -102,6 +111,9 @@ yargs.command({
   },
 });
 
+/**
+ * Command to list the titles of a user's notes.
+ */
 yargs.command({
   command: 'list',
   describe: 'List the titles of the notes',
@@ -119,6 +131,9 @@ yargs.command({
   },
 });
 
+/**
+ * Command to read a specific note from the list.
+ */
 yargs.command({
   command: 'read',
   describe: 'Read a specific note from the list',
@@ -141,4 +156,7 @@ yargs.command({
   },
 });
 
+/**
+ * Process the arguments passed from the command line to the application.
+ */
 yargs.parse();
