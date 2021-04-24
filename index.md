@@ -4,7 +4,7 @@
 
 ## 1. Introducción
 
-En este informe se explica la solución diseñada para implementar una aplicación de procesamiento de notas de texto. Esta aplicación permite añadir, modificar, eliminar, listar u leer notas de un usuario concreto. Las notas se almacenan como ficheros JSON en el sistema de ficheros de la máquina que ejecute la aplicación. Cabe destacar que los usuarios sólo pueden interactuar con la aplicación a través de la línea de comandos.
+En este informe se explica la solución diseñada para implementar una aplicación de procesamiento de notas de texto. Esta aplicación permite añadir, modificar, eliminar, listar o leer notas de un usuario concreto. Las notas se almacenan como ficheros JSON en el sistema de ficheros de la máquina que ejecute la aplicación. Cabe destacar que los usuarios sólo pueden interactuar con la aplicación a través de la línea de comandos.
 
 ## 2. Objetivos
 
@@ -15,14 +15,15 @@ Los objetivos de esta práctica son:
 
 ## 3. Tareas previas
 
-1. Antes de empezar con la práctica hay que realizar las siguientes tareas:
+Antes de empezar con la práctica hay que realizar las siguientes tareas:
 
-2. Aceptar la [asignación de GitHub Classroom](https://classroom.github.com/assignment-invitations/906f18610f5e4a289890edf2c0ceb0f4/status) asociada a esta práctica.
-Leer la documentación sobre [yargs](https://www.npmjs.com/package/yargs), [chalk](https://www.npmjs.com/package/chalk) y el [API síncrona proporcionada por Node.js](https://nodejs.org/dist/latest-v15.x/docs/api/fs.html#fs_synchronous_api).
+1. Aceptar la [asignación de GitHub Classroom](https://classroom.github.com/assignment-invitations/906f18610f5e4a289890edf2c0ceb0f4/status) asociada a esta práctica.
+
+2. Leer la documentación sobre [yargs](https://www.npmjs.com/package/yargs), [chalk](https://www.npmjs.com/package/chalk) y el [API síncrona proporcionada por Node.js](https://nodejs.org/dist/latest-v15.x/docs/api/fs.html#fs_synchronous_api).
 
 ## 4. Explicación de la solución diseñada
 
-En este apartado se explica el diseño que se ha llevado a cabo para realizar la aplicación de procesamiento de notas de texto. Antes de comenzar hay que crear la [estructura básica del proyecto vista en clase](https://ull-esit-inf-dsi-2021.github.io/typescript-theory/typescript-project-setup.html). Además, se sigue la metodología **TDD** por lo que en la estructura del proyecto es necesario añadir el directorio `tests` en el cual se incluyen las pruebas unitarias, que hacen posible confirmar el correcto funcionamiento del software y verificar que es robusto ante entradas no válidas. Para documentar el proyecto se utiliza la herramienta **TypeDoc**. Por último, se incluyen flujos de trabajo de GitHub Actions para realizar las pruebas en distintos entornos con diferentes versiones de Node.js, enviar los datos de cubrimiento a Coveralls, así como producir un análisis de la calidad y seguridad del código fuente a través de Sonar Cloud.
+En este apartado se explica el diseño que se ha llevado a cabo para realizar la aplicación de procesamiento de notas de texto. Antes de comenzar hay que crear la [estructura básica del proyecto vista en clase](https://ull-esit-inf-dsi-2021.github.io/typescript-theory/typescript-project-setup.html). Además, se sigue la metodología **TDD** por lo que en la estructura del proyecto es necesario añadir el directorio `tests` en el cual se incluyen las pruebas unitarias, que hacen posible confirmar el correcto funcionamiento del software y verificar que es robusto ante entradas no válidas. Para documentar el proyecto se utiliza la herramienta **TypeDoc**. Por último, se incluyen flujos de trabajo de **GitHub Actions** para realizar las pruebas en distintos entornos con diferentes versiones de **Node.js**, enviar los datos de cubrimiento a **Coveralls**, así como producir un análisis de la calidad y seguridad del código fuente a través de **Sonar Cloud**.
 
 El proyecto está formado por dos ficheros, `note.ts` que incluye la clase **Note** y `note-app.ts` que emplea el paquete **yargs** para que sea posible interactuar con la aplicación desde la línea de comandos. A continuación, se explica cada uno de estos ficheros.
 
@@ -170,15 +171,16 @@ export class Note {
 
 En esta clase se emplea la API síncrona de Node.js para que sea posible añadir, modificar, eliminar, listar y leer las notas de un usuario concreto. Con esta clase también se consigue guardar cada nota de la lista en un fichero con formato JSON y que estos ficheros se almacenen en un directorio con el nombre del usuario correspondiente. Cabe destacar que una nota esta formada por un título, un mensaje y un color (rojo, verde, azul o amarillo).
 
-En esta clase he aplicado el patrón de diseño Singleton por lo que el constructor es privado y se dispone del atributo privado estático **note**. Además, se ha declarado un método público estático `getNotes()`, durante la primera invocación a este método se crea la única instancia de la clase, en sucesivas invocaciones al método, se devuelve la instancia de la clase creada durante la primera invocación. En este método también se comprueba si no existe el directorio `notes` y en caso de que esto sea así se crea mediante `fs.mkdirSync('notes', {recursive: true});`.
+En esta clase he aplicado el patrón de diseño Singleton por lo que el constructor es privado y se dispone del atributo privado estático **note**. Además, se ha declarado un método público estático `getNotes()`, durante la primera invocación a este método se crea la única instancia de la clase, en sucesivas invocaciones al método, se devuelve la instancia de la clase creada durante la primera invocación. En este método también se comprueba si no existe el directorio `notes` y en caso de que esto sea así se crea mediante `fs.mkdirSync('notes', {recursive: true})`.
 
-El método `addNote` permite añadir una nota a la lista. Antes de hacer esto se comprueba mediante  `fs.existsSync('notes/${userName}/${title}.json')` si ese usuario ya tiene una nota con el mismo título, en caso de que así sea entonces se muestra por consola `Note title taken!`, este texto aparecerá en rojo y en negrita `chalk.bold.red` ya que estamos empleando el paquete **chalk**. Si no existe una nota con el mismo título se adaptan los parámetros que ha recibido el método para generar un texto en formato JSON, tras ello con `fs.mkdirSync('notes/${userName}', {recursive: true})` se crea el directorio donde se van a almacenar las notas del usuario, después mediante `fs.appendFileSync('notes/${userName}/${title}.json', jsonText)`  se añaden de forma síncrona datos al fichero que representa la nota, en caso de que el fichero no exista este se crea. Finalmente, se muestra en verde y en negrita el mensaje `New note added!` para indicar que la nota se ha añadido correctamente.
+El método `addNote` permite añadir una nota a la lista. Antes de hacer esto se comprueba mediante  `fs.existsSync('notes/${userName}/${title}.json')` si ese usuario ya tiene una nota con el mismo título, en caso de que así sea entonces se muestra por consola `Note title taken!`, este texto aparecerá en rojo y en negrita `chalk.bold.red` ya que estamos empleando el paquete **chalk**. Si no existe una nota con el mismo título se adaptan los parámetros que ha recibido el método para generar un texto en formato JSON, tras ello
+si existe un directorio con el nombre del usuario, se añaden de forma síncrona datos al fichero que representa la nota mediante `fs.appendFileSync('notes/${userName}/${title}.json', jsonText)`. En caso de que el directorio no exista entonces se crea empleando `fs.mkdirSync('notes/${userName}', {recursive: true})` y después se añaden los datos al fichero. Finalmente, se muestra en verde y en negrita el mensaje `New note added!` para indicar que la nota se ha añadido correctamente.
 
-El método `modifyNote` modifica una nota de la lista, primero se comprueba si el usuario tiene alguna nota con el título que se ha pasado como parámetro, en caso de que esto no sea así se muestra por consola `The note you want to modify does not exist!`. Sin embargo, si la nota existe entonces se emplea la constante **jsonText** para hacer que los parámetros que recibe el método estén en formato  JSON y luego se escribe en el fichero donde se encuentra la nota utilizando `fs.writeFileSync('notes/${userName}/${title}.json', jsonText)`, esto hace que se elimine el contenido anterior y se guarde el que hemos establecido en este momento. Por último, se muestra el mensaje `Note modified!` para informar que la modificación se ha realizado adecuadamente.
+El método `modifyNote` modifica una nota de la lista, primero se comprueba si el usuario tiene alguna nota con el título que se ha pasado como parámetro, en caso de que esto no sea así se muestra por consola `The note you want to modify does not exist!`. Sin embargo, si la nota existe entonces se emplea la constante **jsonText** para hacer que los parámetros que recibe el método estén en formato  JSON, y luego se escribe en el fichero donde se encuentra la nota utilizando `fs.writeFileSync('notes/${userName}/${title}.json', jsonText)`, esto hace que se elimine el contenido anterior y se guarde el que hemos establecido en este momento. Por último, se muestra el mensaje `Note modified!` para informar que la modificación se ha realizado adecuadamente.
 
 Para eliminar una nota de la lista se debe emplear `removeNote`. En este método como en los anteriores también se verifica que para el usuario existe una nota con el título indicado, imprimiendo por consola `Note not found` si la nota no existe. En caso contrario se elimina dicha nota empleando `fs.rmSync('notes/${userName}/${title}.json')` y se muestra el mensaje `Note removed!`.
 
-Con `showNotes` se listan los títulos de todas las notas de un usuario, si no se encuentra un directorio con el nombre del usuario esto significa que nunca ha guardado una nota en el sistema por lo que se imprime `You have never saved a note`. Sin embargo, si existe este directorio se obtienen todos los ficheros que se encuentran en él, para ello se emplea `fs.readdirSync('notes/${userName}')` que lee el contenido de un directorio. Tras esto, se recorre la constante **filesInDirectory** que se trata de una array de string con el nombre de los diferentes ficheros, para cada uno de ellos se lee su contenido con `fs.readFileSync('notes/${userName}/${file}', {encoding: 'utf-8'})` y este contenido se convierte a JSON mediante `JSON.parse(contentFile)` para que se pueda acceder fácilmente al título y color. Finalmente con `console.log(chalk.bold.keyword(jsonContent.color)(jsonContent.title))` se muestra el título de la nota con su color correspondiente.  
+Con `showNotes` se listan los títulos de todas las notas de un usuario, si no se encuentra un directorio con el nombre del usuario esto significa que nunca ha guardado una nota en el sistema por lo que se imprime `You have never saved a note`. Sin embargo, si existe este directorio se obtienen todos los ficheros que se encuentran en él, para ello se emplea `fs.readdirSync('notes/${userName}')` que lee el contenido de un directorio. Tras esto, se recorre la constante **filesInDirectory** que se trata de una array de string con el nombre de los diferentes ficheros, para cada uno de ellos se lee su contenido con `fs.readFileSync('notes/${userName}/${file}', {encoding: 'utf-8'})`, y este contenido se convierte a JSON mediante `JSON.parse(contentFile)` para que se pueda acceder fácilmente al título y color. Finalmente con `console.log(chalk.bold.keyword(jsonContent.color)(jsonContent.title))` se muestra el título de la nota con su color correspondiente.  
 
 Por último, el método `readNote` permite leer el contenido de una nota concreta, como se ha hecho en el resto de métodos, primero se comprueba que existe la nota que se quiere leer, en caso de que no sea así se imprime el mensaje `Note not found`. En otro caso, se obtiene el contenido de la nota con `fs.readFileSync('notes/${userName}/${title}.json', {encoding: 'utf-8'})`, este contenido se convierte a JSON empleando `JSON.parse(contentFile)` y se muestran con el color adecuado el título y el mensaje de la nota.
 
@@ -240,26 +242,22 @@ yargs.command({
 yargs.command({
   command: 'modify',
   describe: 'Modify a note',
-
   builder: {
     user: {
       describe: 'User who is going to modify a note',
       demandOption: true,
       type: 'string',
     },
-
     title: {
       describe: 'The title of the note',
       demandOption: true,
       type: 'string',
     },
-
     body: {
       describe: 'The text of the note',
       demandOption: true,
       type: 'string',
     },
-
     color: {
       describe: 'The color of the note',
       demandOption: true,
@@ -269,10 +267,8 @@ yargs.command({
   handler(argv) {
     if (typeof argv.body === 'string' && typeof argv.color === 'string' &&
           typeof argv.user === 'string' && typeof argv.title === 'string') {
-
       if (argv.color != 'blue' && argv.color != 'red' && argv.color != 'yellow' && argv.color != 'green') {
         console.log(chalk.bold.red('Note color must be red, green, blue, or yellow'));
-
       } else {
         note.modifyNote(argv.user, argv.title, argv.body, argv.color);
       }
@@ -458,3 +454,8 @@ A diferencia de prácticas anteriores en esta se ha utilizado la herramienta **S
 
 Por último, pienso que una vez sabemos la manera en la que trabajar con el lenguaje **TypeScript**, aprender este tipo de herramientas es muy importante para conseguir avanzar como desarrolladores.
 
+## 8. Bibliografía
+
+* [Documentación del paquete yargs](https://www.npmjs.com/package/yargs)
+* [Documentación del paquete chalk](https://www.npmjs.com/package/chalk)
+* [Documentación de la API síncrona de Node.js](https://nodejs.org/dist/latest-v15.x/docs/api/fs.html#fs_synchronous_api)
